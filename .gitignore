@@ -1,6 +1,7 @@
 .aux
 .o
-
+.d
+.crf
 
 #############
 ## Windows detritus

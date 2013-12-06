@@ -1,0 +1,22 @@
+--cpu Cortex-M4.fp
+".\build\startup_stm32f40xx.o"
+".\build\stm32f4xx_it.o"
+".\build\system_stm32f4xx.o"
+".\build\misc.o"
+".\build\stm32f4xx_exti.o"
+".\build\stm32f4xx_gpio.o"
+".\build\stm32f4xx_syscfg.o"
+".\build\stm32f4xx_tim.o"
+".\build\stm32f4xx_usart.o"
+".\build\stm32f4xx_dma.o"
+".\build\stm32f4xx_flash.o"
+".\build\stm32f4xx_pwr.o"
+".\build\stm32f4xx_rcc.o"
+".\build\stm32f4xx_rtc.o"
+".\build\stm32f4xx_sdio.o"
+".\build\stm32f4xx_spi.o"
+".\build\main.o"
+--library_type=microlib --strict --scatter ".\Build\wireless.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Build\wireless.map" -o .\Build\wireless.axf

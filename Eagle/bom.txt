@@ -1,0 +1,34 @@
+Partlist exported from /Users/ric/Documents/eagle/my_projects/elec6067/car.sch at 15/12/2013 19:17
+
+Qty Value                Device               Package            Parts                                  Description                                     
+1                        DB9FEMALE            DB9                X1                                     DB9 Connector                                   
+7                        LED0603              LED-0603           PWR, RX, STATUS, TP, TX, URX, UTX      LEDs                                            
+1                        M06SIP               1X06               JP-ACC                                 Header 6                                        
+1                        SOLDERJUMPERNO       SJ_2S-NO           SJ1                                    Solder Jumper                                   
+1                        SWITCH-SPDTPTH       SWITCH-SPDT        ON                                     SPST Switch                                     
+5   0.1u                 CAP_POL1206          EIA3216            C4, C10, C11, C15, C16                 Capacitor Polarized                             
+1   10                   RESISTOR0603-RES     0603-RES           R5                                     Resistor                                        
+9   100n                 CAP0603-CAP          0603-CAP           C5, C6, C7, C8, C9, C14, C20, C21, C24 Capacitor                                       
+2   10k                  RESISTOR0603-RES     0603-RES           R1, R2, R3, R6, R10                    Resistor                                        
+2   22p                  CAP0603-CAP          0603-CAP           C12, C13                               Capacitor                                       
+1   27nH                 INDUCTOR0603         0603               L1                                     Inductors                                       
+2   2u2                  CAP0603-CAP          0603-CAP           C25, C26                               Capacitor                                       
+6   330                  RESISTOR0603-RES     0603-RES           R7, R8, R9, R11, R12, R13              Resistor                                        
+1   4.7u                 CAP_POL1206          EIA3216            C22                                    Capacitor Polarized                             
+1   470                  RESISTOR0603-RES     0603-RES           R4                                     Resistor                                        
+1   470p                 CAP0603-CAP          0603-CAP           C18                                    Capacitor                                       
+2   4u7                  CAP_POL1206          EIA3216            C17, C19                               Capacitor Polarized                             
+1   AMB3B-25.000MHZ-B2-T AMB3B-25.000MHZ-B2-T 4LCC               XTAL                                   CRYSTAL, 25.000MHZ 18PF SMD                     
+1   BOOT                 TAC_SWITCHSMD        TACTILE_SWITCH_SMD BOOT                                   Momentary Switch                                
+1   FT232RLSSOP          FT232RLSSOP          SSOP28DB           IC1                                    USB UART                                        
+1   GRPB052VWQS-RC       GRPB052VWQS-RC       DEBUG              JTAG                                   CONN HEADER 0.050" 10PS DL SMD AU               
+1   MAX232SOIC16         MAX232SOIC16         SO016              U1                                     RS232 Transceiver
+1   POWER_JACKPTH        POWER_JACKPTH        POWER_JACK_PTH     J1                                     Power Jack                                      
+1   RJ11-6PTH            RJ11-6PTH            RJ11-6             J2                                     RJ11 Jack                                       
+1   RST                  TAC_SWITCHSMD        TACTILE_SWITCH_SMD S1                                     Momentary Switch                                
+1   SMA_EDGE             SMA_EDGE             SMA-EDGE           J$1                                    SMA Antenna Connector                           
+4   STAND-OFF            STAND-OFF            STAND-OFF          JP1, JP2, JP3, JP4                     #4 Stand Off                                    
+1   STM32F405R           STM32F405R           TQFP64             STM32                                  STM32F405 64 pin LQFP                           
+1   UBLOX_MAX-6          UBLOX_MAX-6          UBLOX_MAX-6        U$1                                    UBLOX MAX-6                                     
+1   USB-SMD-NS           USB-SMD-NS           USB-MINIB-NOSTOP   USB                                    USB Connectors                                  
+1   V_REG_LDOSMD         V_REG_LDOSMD         SOT23-5            U3                                     Voltage Regulator LDO                           

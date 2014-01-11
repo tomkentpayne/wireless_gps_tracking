@@ -4,6 +4,9 @@
 .crf
 .plg
 .dep
+.TOM
+.bak
+.uvopt
 
 #############
 ## Windows detritus

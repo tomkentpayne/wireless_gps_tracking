@@ -20,6 +20,7 @@
 
 /* Private variables */
 char received_string[MAX_STRLEN]; /* String received over USART */
+char nmea_data[MAX_GPS_STRLEN]; /* GPS nmea data, before lat/long extracted */
 static int timeout = 10000;
 static char Buffer[MAXUSARTBUF];
 static uint8_t uart1virgin=1; /* no virgins were used in the making of this function */
@@ -132,22 +133,36 @@ void USART1_IRQHandler(void)
 	if( USART_GetITStatus(USART1, USART_IT_RXNE) )
 	{
 		static uint8_t cnt = 0; /* this counter is used to determine the string length */
-		char t = USART1->DR; /* the character from the USART data register is saved in t /*
+		char t = USART1->DR; /* the character from the USART data register is saved in t */
 
-		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
-		/* check if the received character is not the LF character (used to determine end of string)
-		 * or the if the maximum string length has been been reached
-		 */
-		if( (t != '\n') && (cnt < MAX_STRLEN) )
+		USART_ClearITPendingBit(UART1, USART_IT_RXNE);
+		if( ((t != '*') && (cnt < MAX_GPS_STRLEN) && (cnt > 0))
+			|| ((t == '$') && (cnt == 0)) )
+		{
+			if(cnt == 4 && t != 'L')
+			{
+				cnt = 0;
+			}
+			else
+			{
+				received_string[cnt] = t;
+				cnt++;
+			}
+		}
+		// $GPGLL
+		else if( ((t == '*') && (cnt > 0) && ( cnt < (MAX_GPS_STRLEN-1) )))
 		{
 			received_string[cnt] = t;
-			cnt++;
+			received_string[++cnt] = '\0';
+			memcpy(nmea_data, received_string, cnt+1);
+			//ParseNMEA(nmea_data, cnt+1);
+			// USART_sends(USART1, nmea_data);
+			// USART_sends(USART1, "\r\n");
+			cnt = 0;
 		}
-		else /* Otherwise reset the character counter and print the received string */
+		else
 		{
 			cnt = 0;
-			//USART_sends(USART1, received_string); /* Good for debugging serial (uncomment) */
-			/* DO SOMETHING WITH RECEIVED STRING */
 		}
 	}
 }

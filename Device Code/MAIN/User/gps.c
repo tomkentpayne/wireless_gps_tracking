@@ -13,6 +13,10 @@ double latDeg;
 double longDeg;
 double GPSreadings[3];
 
+/*
+* Parses NMEA GPS strings to obtain lat/long.
+* Probably called from a timer and executed before lat/long is logged.
+*/
 int8_t ParseNMEA(char* nmea_data, uint8_t len) /* len = length of string in bytes */
 {
 	/* Start of GPS message */

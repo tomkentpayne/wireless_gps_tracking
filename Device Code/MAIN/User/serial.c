@@ -27,7 +27,7 @@ static uint8_t uart1virgin=1; /* no virgins were used in the making of this func
 static DMA_InitTypeDef  DMA_InitStructure;
 
 /* Private Functions */
-int8_t USART_init(USART_TypeDef* USARTx, uint32 baudrate);
+int8_t USART_init(USART_TypeDef* USARTx, uint32_t baudrate);
 
 /* Initialisation function for serial peripherals */
 int8_t Serial_init(void)
@@ -135,7 +135,7 @@ void USART1_IRQHandler(void)
 		static uint8_t cnt = 0; /* this counter is used to determine the string length */
 		char t = USART1->DR; /* the character from the USART data register is saved in t */
 
-		USART_ClearITPendingBit(UART1, USART_IT_RXNE);
+		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
 		if( ((t != '*') && (cnt < MAX_GPS_STRLEN) && (cnt > 0))
 			|| ((t == '$') && (cnt == 0)) )
 		{
@@ -173,7 +173,7 @@ void USART1_IRQHandler(void)
 int8_t USART1_DMAsends(char *t)
 {
 	uint16_t len = 0;
-	if(*t == 0) return;
+	if(*t == 0) return -1;
 	while((USART1->SR & USART_FLAG_TC)==0); //wait for non-dma tx completion
 	if(!uart1virgin)
 		while(DMA_GetFlagStatus(DMA2_Stream7, DMA_FLAG_TCIF7)==0); //wait for dma tx completion

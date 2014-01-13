@@ -43,17 +43,17 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\Build\</OutputDirectory>
-          <OutputName>wireless</OutputName>
+          <OutputDirectory>.\</OutputDirectory>
+          <OutputName>TestingUART</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\Build\</ListingPath>
+          <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
-          <CreateBatchFile>1</CreateBatchFile>
+          <CreateBatchFile>0</CreateBatchFile>
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
@@ -117,7 +117,7 @@
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
           <Simulator>
-            <UseSimulator>0</UseSimulator>
+            <UseSimulator>1</UseSimulator>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
             <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
@@ -128,7 +128,7 @@
             <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
           </Simulator>
           <Target>
-            <UseTarget>1</UseTarget>
+            <UseTarget>0</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
             <RunToMain>0</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
@@ -139,7 +139,7 @@
             <RestoreTracepoints>1</RestoreTracepoints>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>13</TargetSelection>
+          <TargetSelection>1</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -153,7 +153,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
+            <Driver>BIN\UL2CM3.DLL</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -162,12 +162,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>1</Capability>
-            <DriverSelection>4096</DriverSelection>
+            <Capability>0</Capability>
+            <DriverSelection>-1</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
         </Utilities>
         <TargetArmAds>
@@ -351,7 +351,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F4XX</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Libraries\CMSIS\Include;.\Libraries\STM32F4xx_StdPeriph_Driver\inc;.\Libraries\STM32F4xx_StdPeriph_Driver\src;.\Libraries\CMSIS\ST\STM32F4xx\Include;.\Default;.\User</IncludePath>
+              <IncludePath>..\MAIN\Libraries\CMSIS\Include;..\MAIN\Libraries\CMSIS\ST\STM32F4xx\Include;..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\src;..\MAIN\Default;.\User</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -395,27 +395,27 @@
             <File>
               <FileName>startup_stm32f40xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\Default\startup_stm32f40xx.s</FilePath>
+              <FilePath>..\MAIN\Default\startup_stm32f40xx.s</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_conf.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Default\stm32f4xx_conf.h</FilePath>
+              <FilePath>..\MAIN\Default\stm32f4xx_conf.h</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Default\stm32f4xx_it.c</FilePath>
+              <FilePath>..\MAIN\Default\stm32f4xx_it.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_it.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Default\stm32f4xx_it.h</FilePath>
+              <FilePath>..\MAIN\Default\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Default\system_stm32f4xx.c</FilePath>
+              <FilePath>..\MAIN\Default\system_stm32f4xx.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -423,144 +423,64 @@
           <GroupName>Libraries</GroupName>
           <Files>
             <File>
-              <FileName>core_cm4.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\CMSIS\Include\core_cm4.h</FilePath>
-            </File>
-            <File>
-              <FileName>system_stm32f4xx.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\CMSIS\ST\STM32F4xx\Include\system_stm32f4xx.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h</FilePath>
-            </File>
-            <File>
               <FileName>misc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_exti.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_syscfg.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_tim.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_exti.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_syscfg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_dma.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_flash.h</FileName>
+              <FileName>stm32f4xx_exti.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_pwr.h</FileName>
+              <FileName>stm32f4xx_gpio.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_rcc.h</FileName>
+              <FileName>stm32f4xx_tim.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_rtc.h</FileName>
+              <FileName>stm32f4xx_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rtc.h</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_sdio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sdio.h</FilePath>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_dma.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_flash.c</FileName>
+              <FileName>stm32f4xx_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_flash.c</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_exti.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_pwr.c</FileName>
+              <FileName>stm32f4xx_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.c</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_rcc.c</FileName>
+              <FileName>stm32f4xx_tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_rtc.c</FileName>
+              <FileName>stm32f4xx_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_sdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+              <FilePath>..\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -571,41 +491,6 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>globals.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\globals.h</FilePath>
-            </File>
-            <File>
-              <FileName>gps.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\gps.c</FilePath>
-            </File>
-            <File>
-              <FileName>gps.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\gps.h</FilePath>
-            </File>
-            <File>
-              <FileName>serial.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\serial.c</FilePath>
-            </File>
-            <File>
-              <FileName>serial.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\serial.h</FilePath>
-            </File>
-            <File>
-              <FileName>timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\timer.h</FilePath>
             </File>
           </Files>
         </Group>

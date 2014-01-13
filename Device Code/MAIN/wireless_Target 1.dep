@@ -543,7 +543,7 @@ I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Librarie
 I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x525906D1)
 I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x525906D1)
 I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x525906D1)
-F (.\User\main.c)(0x52A1C343)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I.\Libraries\CMSIS\Include -I.\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\Libraries\STM32F4xx_StdPeriph_Driver\src -I.\Libraries\CMSIS\ST\STM32F4xx\Include -I.\Default -I.\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DSTM32F40XX-o .\build\main.o --omf_browse .\build\main.crf --depend .\build\main.d)
+F (.\User\main.c)(0x52D2CDDE)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I.\Libraries\CMSIS\Include -I.\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\Libraries\STM32F4xx_StdPeriph_Driver\src -I.\Libraries\CMSIS\ST\STM32F4xx\Include -I.\Default -I.\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DSTM32F40XX-o .\build\main.o --omf_browse .\build\main.crf --depend .\build\main.d)
 I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x525906D1)
 I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cm4.h)(0x525906CF)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
@@ -579,3 +579,90 @@ I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Librarie
 I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x525906D1)
 I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x525906D1)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\User\serial.h)(0x52D16585)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\User\gps.h)(0x52D2A637)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\User\timer.h)(0x52D15392)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\User\globals.h)(0x52D2AA7E)
+F (.\User\globals.h)(0x52D2AA7E)()
+F (.\User\gps.c)(0x52D2A757)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I.\Libraries\CMSIS\Include -I.\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\Libraries\STM32F4xx_StdPeriph_Driver\src -I.\Libraries\CMSIS\ST\STM32F4xx\Include -I.\Default -I.\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DSTM32F40XX-o .\build\gps.o --omf_browse .\build\gps.crf --depend .\build\gps.d)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cm4.h)(0x525906CF)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cmInstr.h)(0x525906CF)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cmFunc.h)(0x525906CF)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cm4_simd.h)(0x525906CF)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Default\stm32f4xx_conf.h)(0x525906D2)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_crc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_cryp.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_hash.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_iwdg.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rng.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rtc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sdio.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x525906D1)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\User\globals.h)(0x52D2AA7E)
+I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C80BA4)
+I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C80BA4)
+F (.\User\gps.h)(0x52D2A637)()
+F (.\User\serial.c)(0x52D2AAC9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I.\Libraries\CMSIS\Include -I.\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\Libraries\STM32F4xx_StdPeriph_Driver\src -I.\Libraries\CMSIS\ST\STM32F4xx\Include -I.\Default -I.\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DSTM32F40XX-o .\build\serial.o --omf_browse .\build\serial.crf --depend .\build\serial.d)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cm4.h)(0x525906CF)
+I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cmInstr.h)(0x525906CF)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cmFunc.h)(0x525906CF)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\Include\core_cm4_simd.h)(0x525906CF)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\CMSIS\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Default\stm32f4xx_conf.h)(0x525906D2)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_crc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_cryp.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_hash.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_iwdg.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rng.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rtc.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sdio.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x525906D1)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x525906D1)
+I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C80BA4)
+I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C80BA4)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\User\serial.h)(0x52D16585)
+I (F:\Users\Tom\Documents\GitHub\wireless_gps_tracking\Device Code\MAIN\User\globals.h)(0x52D2AA7E)
+F (.\User\serial.h)(0x52D16585)()
+F (.\User\timer.c)(0x52D1538C)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I.\Libraries\CMSIS\Include -I.\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\Libraries\STM32F4xx_StdPeriph_Driver\src -I.\Libraries\CMSIS\ST\STM32F4xx\Include -I.\Default -I.\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F4XX -DSTM32F40XX-o .\build\timer.o --omf_browse .\build\timer.crf --depend .\build\timer.d)
+F (.\User\timer.h)(0x52D15392)()

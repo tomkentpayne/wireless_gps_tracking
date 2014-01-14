@@ -28,14 +28,13 @@ int main(void)
 
 	if( Serial_init() != 0 )
 		return -1; /* Serial init failed */
+		USART1_DMAsends("Hello World!\r\n");
 
-	USART_sends(USART1, "Hello World!");
 
 	/* Main Loop */
 	while(1)
 	{
 		
-	USART_sends(USART1, "Hello World!");\
 	}
 	return 0;
 }

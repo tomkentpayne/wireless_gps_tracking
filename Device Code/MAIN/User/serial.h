@@ -9,5 +9,6 @@
 int8_t Serial_init(void);
 int8_t USART_sends(USART_TypeDef* USARTx, const char *pszString);
 int8_t USART1_DMAsends(char *t);
+void USART_puts(USART_TypeDef* USARTx, volatile char *s);
 
 #endif /* __SERIAL_H */

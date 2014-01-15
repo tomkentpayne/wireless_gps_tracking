@@ -7,6 +7,7 @@
 #include "gps.h"
 #include "timer.h"
 #include "globals.h"
+#include "gpio.h"
 
 /*
 * README please
@@ -19,6 +20,10 @@
 * 	and still use the return to return error status.
 * - Tom
 */
+void Delay(__IO uint32_t nCount) {
+  while(nCount--) {
+  }
+}
 
 int main(void)
 {
@@ -28,13 +33,17 @@ int main(void)
 
 	if( Serial_init() != 0 )
 		return -1; /* Serial init failed */
-		USART1_DMAsends("Hello World!\r\n");
+	USART1_DMAsends("Hello World!\r\n");
+	GPIO_init();
+	Timer_init();
 
+	GPIO_SetStatusLED();
 
 	/* Main Loop */
 	while(1)
 	{
-		
+		Delay(1000000L);
+		GPIO_ToggleStatusLED();
 	}
 	return 0;
 }

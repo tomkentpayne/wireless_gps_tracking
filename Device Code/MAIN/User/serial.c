@@ -18,12 +18,16 @@
 * USB: USART1 PA9 Tx, PA10 Rx
 */
 
+#define MESSAGE_NO_FIX "$GPGLL,,,,,104439.00,V,N*"
+#define MESSAGE_FIX "$GPGLL,5056.27340,N,00123.88000,W,104503.00,A,A*"
+
 /* Private variables */
 static char received_string[MAX_STRLEN]; /* String received over USART */
 static char nmea_data[MAX_GPS_STRLEN]; /* GPS nmea data, before lat/long extracted */
-static int timeout = 10000;
-static char Buffer[MAXUSARTBUF];
+static char Buffer1[MAXUSARTBUF];
+static char Buffer6[MAXUSARTBUF];
 static uint8_t uart1virgin=1; /* no virgins were used in the making of this function */
+static uint8_t uart6virgin=1; /* no virgins were used in the making of this function */
 static DMA_InitTypeDef  DMA_InitStructure;
 
 /* Private Functions */
@@ -33,9 +37,12 @@ void init_USART1(uint32_t baudrate);
 /* Initialisation function for serial peripherals */
 int8_t Serial_init(void)
 {
-	if( USART_init(USART1, 9600) != 0 ) /* USART1, USB */
+	if( USART_init(USART1, 115200) != 0 ) /* USART1, USB */
+		return -1; /* USART init failed */
+	if( USART_init(USART6, 9600) != 0 ) /* USART6, GPRS/RS232 */
 		return -1; /* USART init failed */
 	
+	strcpy(nmea_data, MESSAGE_FIX);
 
 	return 0;
 }
@@ -96,7 +103,7 @@ int8_t USART_init(USART_TypeDef* USARTx, uint32_t baudrate)
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);	/* Enable APB2 peripheral clock (USART1 is on it) */
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Same for the gpio pins used */
 
-  		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);	/* DMA1 clock enable */
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);	/* DMA1 clock enable */
 
 		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;	/* 9 is Tx, 10 is Rx */
 		NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;		 /* Configure the USART1 interrupts */
@@ -107,11 +114,11 @@ int8_t USART_init(USART_TypeDef* USARTx, uint32_t baudrate)
 		/* DMA: */
  
 		DMA_DeInit(DMA2_Stream7);
-  		DMA_StructInit(&DMA_InitStructure);
+		DMA_StructInit(&DMA_InitStructure);
 		DMA_InitStructure.DMA_Channel = DMA_Channel_4;
 		DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral; /* Transmit */
-		DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Buffer;
-		DMA_InitStructure.DMA_BufferSize = (uint16_t)sizeof(Buffer) - 1;
+		DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Buffer1;
+		DMA_InitStructure.DMA_BufferSize = (uint16_t)sizeof(Buffer1) - 1;
 		DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&(USART1->DR);
 		DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 		DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
@@ -132,6 +139,49 @@ int8_t USART_init(USART_TypeDef* USARTx, uint32_t baudrate)
 		
 		/* Enable the DMA USART1 Tx Stream */
 		DMA_Cmd(DMA2_Stream7, ENABLE);
+	}
+	else if(USARTx == USART6) /* RS232 */
+	{
+
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);	/* Enable APB2 peripheral clock (USART1 is on it) */
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);	/* Same for the gpio pins used */
+
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);	/* DMA1 clock enable */
+
+		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;	/* 9 is Tx, 10 is Rx */
+		NVIC_InitStructure.NVIC_IRQChannel = USART6_IRQn;		 /* Configure the USART1 interrupts */
+		GPIOx = GPIOC;
+		GPIO_PinAFConfig(GPIOx, GPIO_PinSource6, GPIO_AF_USART6);
+		GPIO_PinAFConfig(GPIOx, GPIO_PinSource7, GPIO_AF_USART6);
+
+		/* DMA: */
+ 
+		DMA_DeInit(DMA2_Stream6);
+		DMA_StructInit(&DMA_InitStructure);
+		DMA_InitStructure.DMA_Channel = DMA_Channel_5;
+		DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral; /* Transmit */
+		DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Buffer6;
+		DMA_InitStructure.DMA_BufferSize = (uint16_t)sizeof(Buffer6) - 1;
+		DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&(USART6->DR);
+		DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+		DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+		DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+		DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+		DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+		DMA_InitStructure.DMA_Priority = DMA_Priority_Low;
+		DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable; /* MAYBE ENABLE */
+		DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull; /* MAYBE FUL NOT HALFFULL */
+		DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
+		DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
+		DMA_Init(DMA2_Stream6, &DMA_InitStructure);
+		/* Enable the USART Tx DMA request */
+		USART_DMACmd(USART6, USART_DMAReq_Tx, ENABLE);
+		
+		/* Enable DMA Stream Transfer Complete interrupt */
+		DMA_ITConfig(DMA2_Stream6, DMA_IT_TC, ENABLE);
+		
+		/* Enable the DMA USART1 Tx Stream */
+		DMA_Cmd(DMA2_Stream6, ENABLE);
 	}
 	else
 	{
@@ -171,6 +221,16 @@ void DMA2_Stream7_IRQHandler(void)
 	{
 		/* Clear DMA Stream Transfer Complete interrupt pending bit */
 		DMA_ClearITPendingBit(DMA2_Stream7, DMA_IT_TCIF7);
+	}
+}
+
+void DMA2_Stream6_IRQHandler(void)
+{
+	/* Test on DMA Stream Transfer Complete interrupt */
+	if (DMA_GetITStatus(DMA2_Stream6, DMA_IT_TCIF6))
+	{
+		/* Clear DMA Stream Transfer Complete interrupt pending bit */
+		DMA_ClearITPendingBit(DMA2_Stream6, DMA_IT_TCIF6);
 	}
 }
 
@@ -230,10 +290,10 @@ int8_t USART1_DMAsends(char *t)
 	while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
 	while(*t)
 	{
-		Buffer[len++]= *t++;
+		Buffer1[len++]= *t++;
 		if(len == MAXUSARTBUF-1)
 		{
-			Buffer[len++] = 0;
+			Buffer1[len++] = 0;
 			break;
 		}
 	}
@@ -245,21 +305,45 @@ int8_t USART1_DMAsends(char *t)
 	return 0;
 }
 
+/* 
+* Send data over USART6 using DMA
+*/
+int8_t USART6_DMAsends(char *t)
+{
+	uint16_t len = 0;
+	if(*t == 0) return -1;
+	while((USART6->SR & USART_FLAG_TC)==0); //wait for non-dma tx completion
+	if(!uart6virgin)
+		while(DMA_GetFlagStatus(DMA2_Stream6, DMA_FLAG_TCIF6)==0); //wait for dma tx completion
+	while(USART_GetFlagStatus(USART6, USART_FLAG_TXE) == RESET);
+	while(*t)
+	{
+		Buffer1[len++]= *t++;
+		if(len == MAXUSARTBUF-1)
+		{
+			Buffer6[len++] = 0;
+			break;
+		}
+	}
+	DMA_InitStructure.DMA_BufferSize = DMA2_Stream6->NDTR = len;
+	DMA_ClearFlag(DMA2_Stream6, DMA_FLAG_TCIF6); //clear transfer complete to allow next one
+	DMA_Cmd(DMA2_Stream6, ENABLE);
+	uart6virgin=0;
+
+	return 0;
+}
+
 /* Send data over specified USART.
 * e.g USART_sends(USART1, "Hello World!");
 */
-int8_t USART_sends(USART_TypeDef* USARTx, const char *pszString)
+int8_t USART_sends(USART_TypeDef* USARTx, char *pszString)
 {
-	int count;
 	if( strlen(pszString) > MAX_STRLEN )
 		return -1; /* String too long */
 	while(*pszString){
-		count = 0;
 		/* Wait until send register is empty */
 		while( !(USARTx->SR & 0x00000040) )
 		{
-			if (count++ >= timeout)
-				return -1; /* Maybe 0, data never sent */
 		}			
 		USART_SendData(USARTx, *pszString);
 		*pszString++;

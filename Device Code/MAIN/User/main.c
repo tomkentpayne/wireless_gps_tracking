@@ -33,7 +33,10 @@ int main(void)
 
 	if( Serial_init() != 0 )
 		return -1; /* Serial init failed */
+	//USART1_DMAsends("Hel");
 	USART1_DMAsends("Hello World!\r\n");
+	USART6_DMAsends("Hello World!\r\n");
+	USART_puts(USART6, "Hello World!USART_puts\r\n");
 	GPIO_init();
 	Timer_init();
 

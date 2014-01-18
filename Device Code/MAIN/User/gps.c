@@ -9,6 +9,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+//#define MESSAGE_FIX "$GPGLL,5056.27340,N,00123.88000,W,104503.00,A,A*"
+
 double latDeg;
 double longDeg;
 double GPSreadings[3];
@@ -17,7 +19,7 @@ double GPSreadings[3];
 * Parses NMEA GPS strings to obtain lat/long.
 * Probably called from a timer and executed before lat/long is logged.
 */
-int8_t ParseNMEA(char* nmea_data, uint8_t len) /* len = length of string in bytes */
+int8_t ParseNMEA(char* nmea_data)
 {
 	/* Start of GPS message */
 	if( (nmea_data[0] == '$') && (nmea_data[1] == 'G') && (nmea_data[2] == 'P') )
@@ -83,4 +85,14 @@ int8_t ParseNMEA(char* nmea_data, uint8_t len) /* len = length of string in byte
 	else
 		return -1; /* Not GPS data */
 	return 0;
+}
+
+double GetLat(void)
+{
+	return latDeg;
+}
+
+double GetLong(void)
+{
+	return longDeg;
 }

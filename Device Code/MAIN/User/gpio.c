@@ -6,6 +6,7 @@
 #include <stm32f4xx_gpio.h>
 
 static uint32_t LEDstatus;
+static uint32_t LEDfix;
 
 /*
 * Initialise GPIO for status LED
@@ -15,6 +16,7 @@ void GPIO_init(void)
 	GPIO_InitTypeDef GPIO_InitStruct;
 	
 	LEDstatus = 0;
+	LEDfix = 0;
 	
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 
@@ -45,10 +47,26 @@ void GPIO_ResetStatusLED(void)
 /* Toggle LED on/off */
 void GPIO_ToggleStatusLED(void)
 {
-	if(LEDstatus)
-		GPIO_ResetBits(GPIOC, GPIO_Pin_14);
-	else
-		GPIO_SetBits(GPIOC, GPIO_Pin_14);
-	LEDstatus = 1 - LEDstatus;
+	if(LEDfix == 0)
+	{
+		if(LEDstatus)
+			GPIO_ResetBits(GPIOC, GPIO_Pin_14);
+		else
+			GPIO_SetBits(GPIOC, GPIO_Pin_14);
+		LEDstatus = 1 - LEDstatus;
+	}
+}
+
+/* When LEDfix is 1, toggling LED doesn't work.
+* For use when GPS fix means LED should always be on. */
+void GPIO_Fix(void)
+{
+	LEDfix = 1;
+	GPIO_SetStatusLED();
+}
+void GPIO_NoFix(void)
+{
+	LEDfix = 0;
+	GPIO_ResetStatusLED();
 }
 

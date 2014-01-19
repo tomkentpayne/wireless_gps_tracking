@@ -52,17 +52,15 @@ void TIM2_IRQHandler(void)
 		/* PARSE NMEA HERE */
 		if(ParseNMEA()==0)
 		{
-			snprintf(latlong, 28, "                               ");
-			GPIO_SetStatusLED();
+			snprintf(latlong, 28, "                               "); /* Fill with blank spaces */
+			GPIO_Fix(); /* Status LED stays on */
+			/* Log lat/long to database */
 			if(firstFix)
 				snprintf(latlong, 28, "POSTy%f#%f", GetLat(), GetLong());
 			else
 				snprintf(latlong, 28, "POST%f#%f", GetLat(), GetLong());
 		}
 		else
-			GPIO_ResetStatusLED();
-		/* SEND LAT/LONG OVER SERIAL HERE */
-		//USART1_DMAsends(latlong);
-		//USART6_DMAsends(latlong);
+			GPIO_NoFix(); /* Status LED can flash */
 	}
 }

@@ -45,7 +45,7 @@ int main(void)
 	while(1)
 	{
 		Delay(2000000L);
-		//GPIO_ToggleStatusLED();
+		GPIO_ToggleStatusLED();
 	}
 	return 0;
 }

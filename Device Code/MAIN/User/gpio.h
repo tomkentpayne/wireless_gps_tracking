@@ -9,5 +9,7 @@ void GPIO_init(void);
 void GPIO_SetStatusLED(void);
 void GPIO_ResetStatusLED(void);
 void GPIO_ToggleStatusLED(void);
+void GPIO_Fix(void);
+void GPIO_NoFix(void);
 
 #endif /* __GPIO_H */

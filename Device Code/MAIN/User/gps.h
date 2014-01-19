@@ -5,7 +5,7 @@
 #ifndef __GPS_H
 #define __GPS_H
 
-int8_t ParseNMEA(volatile char* nmea_data);
+int8_t ParseNMEA(/*char* nmea_data*/ void);
 double GetLat(void);
 double GetLong(void);
 

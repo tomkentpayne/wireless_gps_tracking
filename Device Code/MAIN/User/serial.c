@@ -23,8 +23,9 @@
 
 /* Private variables */
 static char received_string[MAX_STRLEN]; /* String received over USART */
-static char nmea_data[MAX_GPS_STRLEN]; /* GPS nmea data, before lat/long extracted */
+char nmea_data[MAX_GPS_STRLEN]; /* GPS nmea data, before lat/long extracted */
 static char Buffer1[MAXUSARTBUF];
+static char Buffer3[MAXUSARTBUF];
 static char Buffer6[MAXUSARTBUF];
 static uint8_t uart1virgin=1; /* no virgins were used in the making of this function */
 static uint8_t uart6virgin=1; /* no virgins were used in the making of this function */
@@ -40,6 +41,8 @@ int8_t Serial_init(void)
 	if( USART_init(USART1, 115200) != 0 ) /* USART1, USB */
 		return -1; /* USART init failed */
 	if( USART_init(USART6, 9600) != 0 ) /* USART6, GPRS/RS232 */
+		return -1; /* USART init failed */
+	if( USART_init(USART3, 9600) != 0 ) /* USART6, GPRS/RS232 */
 		return -1; /* USART init failed */
 	
 	strcpy(nmea_data, MESSAGE_FIX);
@@ -139,6 +142,49 @@ int8_t USART_init(USART_TypeDef* USARTx, uint32_t baudrate)
 		
 		/* Enable the DMA USART1 Tx Stream */
 		DMA_Cmd(DMA2_Stream7, ENABLE);
+	}
+	else if(USARTx == USART3) /* Re-done GPS */
+	{
+
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);	/* Enable APB2 peripheral clock (USART3 is on it) */
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Same for the gpio pins used */
+
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);	/* DMA1 clock enable */
+
+		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;	/* 10 is Tx, 11 is Rx */
+		NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;		 /* Configure the USART3 interrupts */
+		GPIOx = GPIOB;
+		GPIO_PinAFConfig(GPIOx, GPIO_PinSource10, GPIO_AF_USART3);
+		GPIO_PinAFConfig(GPIOx, GPIO_PinSource11, GPIO_AF_USART3);
+
+		/* DMA: */
+ 
+		DMA_DeInit(DMA1_Stream3);
+		DMA_StructInit(&DMA_InitStructure);
+		DMA_InitStructure.DMA_Channel = DMA_Channel_4;
+		DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral; /* Transmit */
+		DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Buffer3;
+		DMA_InitStructure.DMA_BufferSize = (uint16_t)sizeof(Buffer3) - 1;
+		DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&(USART3->DR);
+		DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+		DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+		DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+		DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+		DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+		DMA_InitStructure.DMA_Priority = DMA_Priority_Low;
+		DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable; /* MAYBE ENABLE */
+		DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull; /* MAYBE FUL NOT HALFFULL */
+		DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
+		DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
+		DMA_Init(DMA1_Stream3, &DMA_InitStructure);
+		/* Enable the USART Tx DMA request */
+		USART_DMACmd(USART3, USART_DMAReq_Tx, ENABLE);
+		
+		/* Enable DMA Stream Transfer Complete interrupt */
+		DMA_ITConfig(DMA1_Stream3, DMA_IT_TC, ENABLE);
+		
+		/* Enable the DMA USART1 Tx Stream */
+		DMA_Cmd(DMA1_Stream3, ENABLE);
 	}
 	else if(USARTx == USART6) /* RS232 */
 	{
@@ -242,10 +288,25 @@ void USART1_IRQHandler(void)
 	/* Check if the USART receive interrupt flag was set */
 	if( USART_GetITStatus(USART1, USART_IT_RXNE) )
 	{
-		static uint8_t cnt = 0; /* this counter is used to determine the string length */
 		char t = USART1->DR; /* the character from the USART data register is saved in t */
-
 		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+		
+	}
+}
+
+/*
+* USART3 Interrupt request handler
+*/
+void USART3_IRQHandler(void)
+{
+	/* Check if the USART receive interrupt flag was set */
+	if( USART_GetITStatus(USART3, USART_IT_RXNE) )
+	{
+		static uint8_t cnt = 0; /* this counter is used to determine the string length */
+		char t = USART3->DR; /* the character from the USART data register is saved in t */
+
+		USART_ClearITPendingBit(USART3, USART_IT_RXNE);
+		
 		if( ((t != '*') && (cnt < MAX_GPS_STRLEN) && (cnt > 0))
 			|| ((t == '$') && (cnt == 0)) )
 		{
@@ -265,9 +326,6 @@ void USART1_IRQHandler(void)
 			received_string[cnt] = t;
 			received_string[++cnt] = '\0';
 			memcpy(nmea_data, received_string, cnt+1);
-			//ParseNMEA(nmea_data, cnt+1);
-			// USART_sends(USART1, nmea_data);
-			// USART_sends(USART1, "\r\n");
 			cnt = 0;
 		}
 		else
@@ -318,7 +376,7 @@ int8_t USART6_DMAsends(char *t)
 	while(USART_GetFlagStatus(USART6, USART_FLAG_TXE) == RESET);
 	while(*t)
 	{
-		Buffer1[len++]= *t++;
+		Buffer6[len++]= *t++;
 		if(len == MAXUSARTBUF-1)
 		{
 			Buffer6[len++] = 0;

@@ -35,8 +35,7 @@ int main(void)
 		return -1; /* Serial init failed */
 	//USART1_DMAsends("Hel");
 	USART1_DMAsends("Hello World!\r\n");
-	USART6_DMAsends("Hello World!\r\n");
-	USART_puts(USART6, "Hello World!USART_puts\r\n");
+	USART_puts(USART6, "Hello World!USART_puts over USART6\r\n");
 	GPIO_init();
 	Timer_init();
 
@@ -45,7 +44,7 @@ int main(void)
 	/* Main Loop */
 	while(1)
 	{
-		Delay(1000000L);
+		Delay(2000000L);
 		GPIO_ToggleStatusLED();
 	}
 	return 0;

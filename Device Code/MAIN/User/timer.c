@@ -11,6 +11,7 @@
 #include "gps.h"
 
 static TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+static char latlong[128]; /* max 28 bytes to send */
 
 void Timer_init(void)
 {
@@ -40,13 +41,15 @@ void TIM2_IRQHandler(void)
 {
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
 	{
-		//char latlong[28]; /* max 28 bytes to send */
-
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 		/* Interrupt handler code here: */
 		USART1_DMAsends("\r\nTimer tick!\r\n");
-		//USART6_DMAsends("\r\nTimer tick!\r\n");
+		USART_puts(USART6, "\r\nTimer tick! USART6\r\n");
 		/* PARSE NMEA HERE */
+		ParseNMEA();
+		USART_puts(USART6, "NMEA Parsed\r\n");
+		snprintf(latlong, 128, "\r\nNMEA received: %s\r\n", NMEA_data());
+		USART_puts(USART6, latlong);
 		//if(ParseNMEA(NMEA_data()) != 0)
 			//USART1_DMAsends("NMEA parsing failed");
 		/* SEND LAT/LONG OVER SERIAL HERE */

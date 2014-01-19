@@ -9,9 +9,11 @@
 #include <stm32f4xx_tim.h>
 #include "serial.h"
 #include "gps.h"
+#include "gpio.h"
 
 static TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
-static char latlong[128]; /* max 28 bytes to send */
+static char latlong[28]; /* max 28 bytes to send */
+static uint32_t firstFix;
 
 void Timer_init(void)
 {
@@ -35,6 +37,8 @@ void Timer_init(void)
 	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
 	/* TIM2 enable counter */
 	TIM_Cmd(TIM2, ENABLE);
+	
+	firstFix = 1;
 }
 
 void TIM2_IRQHandler(void)
@@ -46,14 +50,18 @@ void TIM2_IRQHandler(void)
 		USART1_DMAsends("\r\nTimer tick!\r\n");
 		USART_puts(USART6, "\r\nTimer tick! USART6\r\n");
 		/* PARSE NMEA HERE */
-		ParseNMEA();
-		USART_puts(USART6, "NMEA Parsed\r\n");
-		snprintf(latlong, 128, "\r\nNMEA received: %s\r\n", NMEA_data());
-		USART_puts(USART6, latlong);
-		//if(ParseNMEA(NMEA_data()) != 0)
-			//USART1_DMAsends("NMEA parsing failed");
+		if(ParseNMEA()==0)
+		{
+			snprintf(latlong, 28, "                               ");
+			GPIO_SetStatusLED();
+			if(firstFix)
+				snprintf(latlong, 28, "POSTy%f#%f", GetLat(), GetLong());
+			else
+				snprintf(latlong, 28, "POST%f#%f", GetLat(), GetLong());
+		}
+		else
+			GPIO_ResetStatusLED();
 		/* SEND LAT/LONG OVER SERIAL HERE */
-		//snprintf(latlong, 28, "POSTy%f#%f", GetLat(), GetLong());
 		//USART1_DMAsends(latlong);
 		//USART6_DMAsends(latlong);
 	}

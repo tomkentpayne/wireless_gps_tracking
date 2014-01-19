@@ -45,7 +45,7 @@ int8_t ParseNMEA(/*char* nmea_data*/void)
 			
 			if(index < 5)
 			{
-				return 0; /* NO FIX */
+				return -1; /* NO FIX */
 			}
 
 			decimalIndex = strcspn(tokens[0], "."); /* Finds decimal point in token for lat */

@@ -39,13 +39,13 @@ int main(void)
 	GPIO_init();
 	Timer_init();
 
-	GPIO_SetStatusLED();
+	GPIO_ResetStatusLED();
 
 	/* Main Loop */
 	while(1)
 	{
 		Delay(2000000L);
-		GPIO_ToggleStatusLED();
+		//GPIO_ToggleStatusLED();
 	}
 	return 0;
 }

@@ -35,11 +35,13 @@ int main(void)
 		return -1; /* Serial init failed */
 	//USART1_DMAsends("Hel");
 	USART1_DMAsends("Hello World!\r\n");
-	USART_puts(USART6, "Hello World!USART_puts over USART6\r\n");
+	//USART_puts(USART6, "Hello World!USART_puts over USART6\r\n");
 	GPIO_init();
 	Timer_init();
 
 	GPIO_ResetStatusLED();
+	
+	//USART_puts(USART6, "\r\nBBBBBBBBBBRRRRRRRRRRRRRRRRAAAAAAAAAAAAAAAADDDDDDDDDDDDDDDDDDLLLLLLLLLLLLLLLLLEEEEEEEEEEEEEEEEEYYYYYYYYYYYYYYYYYYYY!!!!\r\n\r\n");
 
 	/* Main Loop */
 	while(1)

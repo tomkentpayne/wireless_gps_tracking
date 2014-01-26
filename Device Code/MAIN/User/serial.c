@@ -66,6 +66,7 @@ void USART_puts(USART_TypeDef* USARTx, volatile char *s){
 */
 char* NMEA_data(void)
 {
+	//return MESSAGE_FIX;
 	return nmea_data;
 }
 
